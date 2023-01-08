@@ -1,0 +1,27 @@
+.Table,
+table,
+thead,
+tbody,
+tr {
+    width: 100%;
+}
+
+tr {
+    display: flex;
+    border-bottom: solid black 1px;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+tbody tr:nth-child(2n+1) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f6f6f6;
+}
+
+.td-no-result {
+    width: 100%;
+    text-align: center;
+}

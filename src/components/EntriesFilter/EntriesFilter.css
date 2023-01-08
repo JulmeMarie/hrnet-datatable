@@ -1,0 +1,19 @@
+.EntriesFilter {
+    display: flex;
+    flex-direction: row;
+}
+
+.EntriesFilter>* {
+    height: 2rem;
+    margin: auto;
+}
+
+.EntriesFilter>div {
+    line-height: 2rem;
+}
+
+.EntriesFilter select {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    height: fit-content;
+}

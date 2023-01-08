@@ -1,0 +1,11 @@
+.DataTable {
+    width: 100%;
+    margin: auto;
+}
+
+.Filter {
+    display: flex;
+
+    justify-content: space-between;
+    height: 2.5rem;
+}
