@@ -6,10 +6,6 @@ import defaultData from '../data';
 export default {
     title: 'Hrnet/Datatable',
     component: DataTable,
-    /*
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },*/
 };
 
 const Template = (args) => <DataTable {...args} />;
@@ -17,5 +13,5 @@ const Template = (args) => <DataTable {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    globalData: defaultData
+    inputData: defaultData
 };

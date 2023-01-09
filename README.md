@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# HRNET-DATATABLE
+hrnet-datatable is a react library created using create-react-app. It allows you to display data in a dynamic table that can be filtered and sorted.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features available
 
-## Available Scripts
+### - Display rows dynamically
+You can chose the number of rows per page you want to display via the "entries select options (10, 25, 50, 100)"
 
-In the project directory, you can run:
+### - Search by criteria
+You can search easily an entry via the search input form
 
-### `npm start`
+### - Sort by columns
+You can also sort by colums value (ASC or DESC) via the icons "caret-up" and "caret-down"
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### - Pagination
+You can easily navigate from one page to another via the pagination tab.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Requirements
+- React 17.0.2+
 
-### `npm test`
+## Installation
+- using NPM :  `npm install hrnet-datatable`
+- using yarn :  `yarn add hrnet-datatable`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
+To use the hrnet-datatable library, you have to proceed like this : 
+-  import it to your component  : `import DataTable from 'hrnet-datatable'`
+- Then provide a props called `inputData`. example : `<Datatable inputData={yourData}/>`
+- The `yourData` is an object that contains two attributes :  `columns` and `data`. Both `columns` and `data`  are arrays of elements.
 
-### `npm run build`
+- `columns` define the name of the columns (which we use for the head of the columns)
+- `data` array contains the data for the rows (array of objects)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The keys of each object element in the `data` array should be the same as the `data` keys of each column element of the `columns` array.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+_yourData_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
+{
+    columns : [
+        { title: "Column Name 1", data: "columnName1" },
+        { title: "Column Name 2", data: "columnName2" },
+        { title: "Column Name 3", data: "columnName3" },
+    ],
+    data : [
+        {
+            columnName1: "value1",
+            columnName2: "value2",
+            columnName3: "value3",
+        },
+        {
+            columnName1: "value1",
+            columnName2: "value2",
+            columnName3: "value3",
+        },
+    ]
+}
+```
 
-### `npm run eject`
+### Example
+_YourComponent.js_
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
+import DataTable from "hrnet-datatable";
+import yourData from "./data.js";
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+const YourComponent = () => {
+  <DataTables inputData={yourData} />;
+};
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+_data.js_
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+const yourData = {
+    columns: [
+        { title: 'First Name', data: 'firstName' },
+        { title: 'Last Name', data: 'lastName' },
+        { title: 'Start Date', data: 'startDate' },
+    ],
+    data: [
+        {
+            lastName: 'JULME',
+            firstName: 'Wilnie',
+            startDate: '08/01/2023'
+        },
+        {
+            firstName: 'Alice',
+            lastName: 'PIERRE'
+        },
+        {
+            firstName: 'Victor',
+            lastName: 'André'
+        },
+    ]
+}
 
-## Learn More
+export default yourData;
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```

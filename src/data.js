@@ -38,6 +38,18 @@ const defaultData = {
             firstName: 'Alain',
             lastName: 'César'
         },
+        {
+            firstName: 'Ronald',
+            lastName: 'PIERRE'
+        },
+        {
+            firstName: 'André',
+            lastName: 'Damien'
+        },
+        {
+            firstName: 'Ricardo',
+            lastName: 'César'
+        },
     ],
     columns: [
         { title: 'First Name', data: 'firstName' },

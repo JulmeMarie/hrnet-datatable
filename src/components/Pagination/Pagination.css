@@ -28,6 +28,7 @@
 
 .pagination__tab .page-index {
     min-width: 2rem;
+    text-align: center;
 }
 
 .page-index:hover:not(.current-page) {

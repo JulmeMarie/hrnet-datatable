@@ -1,5 +1,5 @@
-import Button from './Button';
+import DataTable from './DataTable/DataTable';
 
 export {
-    Button
-};      
+    DataTable
+};

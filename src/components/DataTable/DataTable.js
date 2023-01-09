@@ -6,7 +6,7 @@ import EntriesFilter from '../EntriesFilter/EntriesFilter';
 import SearchFilter from '../SearchFilter/SearchFilter';
 import Pagination from '../Pagination/Pagination';
 
-const DataTable = ({ globalData }) => {
+const DataTable = ({ inputData }) => {
 
   const [entriesValue, setEntriesValue] = useState(10);
   const [searchValue, setSearchValue] = useState(null);
@@ -16,7 +16,7 @@ const DataTable = ({ globalData }) => {
   const [dataLength, setDataLength] = useState(0);
 
   useEffect(() => {
-    if (globalData) {
+    if (inputData) {
       let filteredData = computeFilteredData();
       let dataToDisplay = filteredData.data.filter((element, index) => {
         let startElement = displayData ? pageIndex * entriesValue : 0;
@@ -27,21 +27,21 @@ const DataTable = ({ globalData }) => {
         }
       });
       computePages(filteredData.data.length);
-      setDisplayData({ rows: dataToDisplay, columns: globalData.columns });
+      setDisplayData({ rows: dataToDisplay, columns: inputData.columns });
     }
-  }, [globalData, entriesValue, searchValue, pageIndex]);
+  }, [inputData, entriesValue, searchValue, pageIndex]);
 
   const computeFilteredData = () => {
     if (!searchValue || searchValue.length <= 0) {
-      return globalData;
+      return inputData;
     }
-    let filteredData = globalData.data.filter((element) => {
-      let filteredList = globalData.columns.filter((column) => {
+    let filteredData = inputData.data.filter((element) => {
+      let filteredList = inputData.columns.filter((column) => {
         return (element[column.data] && element[column.data].toLowerCase().includes(searchValue.toLowerCase()));
       });
       return filteredList.length > 0;
     });
-    return { data: filteredData, columns: globalData.columns };
+    return { data: filteredData, columns: inputData.columns };
   }
 
   const computePages = (dataLength) => {
@@ -65,7 +65,7 @@ const DataTable = ({ globalData }) => {
       <Pagination
         nbPages={pages}
         showingEntries={displayData ? displayData.rows.length : 0}
-        totalEntries={globalData ? globalData.data.length : 0}
+        totalEntries={inputData ? inputData.data.length : 0}
         searchValue={searchValue}
         pageIndex={pageIndex}
         setPageIndex={setPageIndex}
