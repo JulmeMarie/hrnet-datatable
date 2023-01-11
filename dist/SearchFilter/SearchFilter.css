@@ -1,0 +1,13 @@
+.SearchFilter {
+    display: flex;
+}
+
+.SearchFilter>input {
+    height: fit-content;
+    margin: auto;
+}
+
+.SearchFilter>label {
+    margin: auto;
+    margin-right: 0.5rem;
+}

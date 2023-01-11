@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Provider } from "react-redux";
+import { store } from '../redux/store';
 import DataTable from './DataTable/DataTable';
 import defaultData from '../data';
 
@@ -8,7 +9,7 @@ export default {
     component: DataTable,
 };
 
-const Template = (args) => <DataTable {...args} />;
+const Template = (args) => <Provider store={store}><DataTable {...args} /></Provider>;
 
 export const Default = Template.bind({});
 

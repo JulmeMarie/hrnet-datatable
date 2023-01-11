@@ -5,23 +5,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.Default = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _Button = _interopRequireDefault(require("./Button"));
+var _DataTable = _interopRequireDefault(require("./DataTable/DataTable"));
+var _data = _interopRequireDefault(require("../data"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var _default = {
-  title: 'Example/Button',
-  component: _Button.default,
-  argTypes: {
-    backgroundColor: {
-      control: 'color'
-    }
-  }
+  title: 'Hrnet/Datatable',
+  component: _DataTable.default
 };
 exports.default = _default;
 var Template = function Template(args) {
-  return /*#__PURE__*/_react.default.createElement(_Button.default, args);
+  return /*#__PURE__*/_react.default.createElement(_DataTable.default, args);
 };
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  label: 'My Button'
+  inputData: _data.default
 };

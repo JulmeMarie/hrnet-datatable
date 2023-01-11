@@ -1,11 +1,22 @@
 import React from 'react';
 import PropTypes, { element } from 'prop-types';
+import { useDispatch, useSelector } from "react-redux";
+import { setSearch, display } from '../../redux/reducer';
+
 import './SearchFilter.css';
 
-const SearchFilter = ({ updateSearch }) => {
+/**
+ * This component allows to display a search input field
+ * @param {*} param0 
+ * @returns 
+ */
+const SearchFilter = () => {
+
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
-    updateSearch(event.target.value);
+    dispatch(setSearch(event.target.value));
+    dispatch(display());
   }
 
   return (

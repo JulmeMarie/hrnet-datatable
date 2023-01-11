@@ -1,14 +1,17 @@
 {
-  "name": "hrnet-datatable",
-  "version": "0.1.1",
+  "name": "datatable-hrnet",
+  "version": "0.0.1",
   "private": false,
-  "peerDependencies": {
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@storybook/addon-storyshots": "^6.5.15",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
     "react-test-renderer": "^17.0.2",
     "web-vitals": "^2.1.4"

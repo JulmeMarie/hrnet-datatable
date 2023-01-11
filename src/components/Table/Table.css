@@ -25,3 +25,36 @@ tbody tr:hover {
     width: 100%;
     text-align: center;
 }
+
+.Table .th-icons {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+}
+
+.Table th {
+    display: flex;
+    cursor: pointer;
+}
+
+.Table .th-icons {
+    font-size: 1rem;
+    height: 1.2rem;
+    width: 1rem;
+    position: relative;
+    color: #ddd;
+}
+
+.Table .th-icons>.up {
+    position: absolute;
+    top: -0.2rem;
+}
+
+.Table .th-icons>.down {
+    position: absolute;
+    bottom: -0.2rem;
+}
+
+.Table .th-icons svg.sort {
+    fill: cadetblue;
+}
