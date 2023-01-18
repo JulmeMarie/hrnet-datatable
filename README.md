@@ -7,7 +7,8 @@ hrnet-datatable is a react library created using create-react-app. It allows you
 You can chose the number of rows per page you want to display via the "entries select options (10, 25, 50, 100)"
 
 ### - Search by criteria
-You can search easily an entry via the search input form
+You can search easily an entry via the search input form.
+Note : date type data must be in the format 'yyyy-mm-dd' or 'yyyy/mm/dd' to be sorted correctly by our library.
 
 ### - Sort by columns
 You can also sort by colums value (ASC or DESC) via the icons "caret-up" and "caret-down"
@@ -82,7 +83,7 @@ const yourData = {
         {
             lastName: 'JULME',
             firstName: 'Wilnie',
-            startDate: '08/01/2023'
+            startDate: '2023/08/23'
         },
         {
             firstName: 'Alice',

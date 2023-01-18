@@ -22,37 +22,54 @@ const actions = {
         state.entries.selected = action.payload;
         return state;
     },
+    setSort: (state, action) => {
+        state.sort = action.payload;
+        return state;
+    },
     display: (state) => {
-        if (state.data.incoming) {//check if inputData exist
-            let filteredData = { ...state.data.incoming };
+        if (state.data.incoming) {
+            let results = { ...state.data.incoming };// clone The user data
+
+            //Step 2 : if search exists, perform search
             if (state.search != null && state.search.length > 0) {
-                let filteredDataList = filteredData.data.filter((element) => {
-                    //Filter the columns array to get the extact column names
-                    let filteredList = filteredData.columns.filter((column) => {
-                        //Check if searchValue input includes in the column of the element
+                state.page.index = 0;//init page index
+                let dataList = results.data.filter((element) => {
+                    let filteredList = results.columns.filter((column) => {
+                        //return true if searchValue input includes in the column of the element
                         return element[column.data] && element[column.data].toLowerCase().includes(state.search.toLowerCase());
                     });
                     return filteredList.length > 0;
                 });
-
-                filteredData.data = filteredDataList;
-                state.page.index = 0;
+                results.data = dataList;
             };
 
-            let division = filteredData.data.length / state.entries.selected;
+            // Step 3 : perform page numbers
+            let division = results.data.length / state.entries.selected;
             state.page.number = Math.ceil(division);
-            state.entries.filtered = filteredData.data.length;
+            state.entries.filtered = results.data.length;
 
-            let dataListForCurrentPage = filteredData.data.filter((element, index) => {
-                let startElement = state.data.display ? state.page.index * state.entries.selected : 0;//start position
-                let endElement = startElement + state.entries.selected;//end position
-                //index must be between the startelement and the endElement
-                return index >= startElement && index < endElement;//True or false
+            // Step 3 : sort the data
+            results.data.sort((element1, element2) => {
+                if (state.sort.order === "ASC") {
+                    return element1[state.sort.column] < element2[state.sort.column] ? -1 : 1;
+                }
+                else if (state.sort.order === "DESC") {
+                    return element1[state.sort.column] > element2[state.sort.column] ? -1 : 1;
+                }
+                return 0;
             });
 
-            filteredData.data = dataListForCurrentPage;
-            state.data.display = filteredData;
-            state.entries.current = filteredData.data.length;
+            // Step 4 : Compute data to display in the current page
+            let dataListForCurrentPage = results.data.filter((element, index) => {
+                let startPos = state.data.display ? state.page.index * state.entries.selected : 0;//start position
+                let endPos = startPos + state.entries.selected;//end position
+                //index must be between the startPos and the endPos
+                return index >= startPos && index < endPos;//True or false
+            });
+
+            results.data = dataListForCurrentPage;
+            state.data.display = results;
+            state.entries.current = results.data.length;
         }
         return state;
     }

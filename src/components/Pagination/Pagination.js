@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
 import { setPageIndex, display } from '../../redux/reducer';
 
@@ -69,9 +68,4 @@ const Pagination = () => {
     </div>
   );
 }
-
-Pagination.propTypes = {};
-
-Pagination.defaultProps = {};
-
 export default Pagination;

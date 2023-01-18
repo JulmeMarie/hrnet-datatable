@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { setIncomingData } from '../../redux/reducer';
 import { display } from '../../redux/reducer';
 import { useDispatch } from "react-redux";
@@ -33,9 +32,5 @@ const DataTable = ({ inputData }) => {
     </div>
   );
 }
-
-DataTable.propTypes = {};
-
-DataTable.defaultProps = {};
 
 export default DataTable;

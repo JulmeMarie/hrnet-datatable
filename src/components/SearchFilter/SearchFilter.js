@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes, { element } from 'prop-types';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSearch, display } from '../../redux/reducer';
 
 import './SearchFilter.css';
@@ -21,14 +20,10 @@ const SearchFilter = () => {
 
   return (
     <div className="SearchFilter" data-testid="SearchFilter">
-      <label>Search: </label>
-      <input type="text" onChange={handleChange} />
+      <label for="search">Search: </label>
+      <input type="text" onChange={handleChange} id="search" />
     </div>
   );
 }
-
-SearchFilter.propTypes = {};
-
-SearchFilter.defaultProps = {};
 
 export default SearchFilter;

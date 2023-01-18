@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
+import { setSort, display } from '../../redux/reducer';
+import { FaCaretUp } from "react-icons/fa";
+import { FaCaretDown } from "react-icons/fa";
 import './Table.css';
 
 /**
@@ -9,23 +12,46 @@ import './Table.css';
  * @returns 
  */
 const Table = () => {
+  const dispatch = useDispatch();
   const [rows, setRows] = useState(null);
   const [columns, setColums] = useState(null);
-  const [columnsStyle, setColumnStyle] = useState(null);
-  const data = useSelector(state => state.datatable.data.display);
-
+  const [column_width, setColumn_width] = useState({ width: 0 });
+  const displayData = useSelector(state => state.datatable.data.display);
+  const sort = useSelector(state => state.datatable.sort);
 
   useEffect(() => {
-    if (data) {
-      setColums(data.columns);
-      setRows(data.data);
-
-      let columnWidth = 100 / data.columns.length;
-      setColumnStyle({
-        width: columnWidth + "%"
-      });
+    if (displayData) {
+      setColums(displayData.columns);
+      setRows(displayData.data);
+      computeColumnWidth();
     }
-  }, [data]);
+  }, [displayData]);
+
+  const computeColumnWidth = () => {
+    let columnWidth = 100 / displayData.columns.length;
+    setColumn_width({ width: columnWidth + "%" });
+  }
+
+  const getIcons = (column) => {
+    if (column === sort.column) {
+      return sort.order === "ASC" ? <FaCaretUp className='up sort' /> : <FaCaretDown className='down sort' />
+    }
+    return <><FaCaretUp className='up' /><FaCaretDown className='down' /></>
+  }
+
+  const handleSort = (column) => {
+    let newSort = { ...sort };
+
+    if (column === sort.column) {
+      newSort.order = sort.order === "ASC" ? "DESC" : "ASC";
+    }
+    else {
+      newSort.column = column;
+      newSort.order = "ASC";
+    }
+    dispatch(setSort(newSort));
+    dispatch(display());
+  }
 
   return (
     <div className="Table" data-testid="Table">
@@ -34,7 +60,10 @@ const Table = () => {
           <tr>
             {
               columns && columns.map((column, index) => {
-                return <th key={index} style={columnsStyle}> {column.title} </th>
+                return <th key={index} style={column_width} onClick={() => handleSort(column.data)}>
+                  <span className='th-text'>{column.title} </span>
+                  <span className='th-icons'>{getIcons(column.data)}</span>
+                </th>
               })
             }
           </tr>
@@ -43,7 +72,7 @@ const Table = () => {
           {
             rows && rows.map((row, indexRow) =>
               <tr key={indexRow}>
-                {columns && columns.map((column, indexColumn) => <td key={indexColumn} style={columnsStyle}> {row[column.data] && row[column.data]} </td>)}
+                {columns && columns.map((column, indexColumn) => <td key={indexColumn} style={column_width}> {row[column.data] && row[column.data]} </td>)}
               </tr>)
           }
           {
@@ -54,9 +83,4 @@ const Table = () => {
     </div>
   );
 }
-
-Table.propTypes = {};
-
-Table.defaultProps = {};
-
 export default Table;
