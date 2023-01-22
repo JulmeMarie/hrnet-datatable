@@ -8,7 +8,8 @@
     margin: auto;
 }
 
-.EntriesFilter>div {
+.EntriesFilter>div,
+.EntriesFilter>label {
     line-height: 2rem;
 }
 

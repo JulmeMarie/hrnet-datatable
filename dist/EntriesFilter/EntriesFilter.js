@@ -5,7 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
+var _reactRedux = require("react-redux");
+var _reducer = require("../../redux/reducer");
 require("./EntriesFilter.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //An array of entries by default
@@ -16,16 +17,25 @@ var entriesArr = [10, 25, 50, 100];
  * @param {*} param0 
  * @returns 
  */
-var EntriesFilter = function EntriesFilter(_ref) {
-  var updateEntries = _ref.updateEntries;
+var EntriesFilter = function EntriesFilter() {
+  var dispatch = (0, _reactRedux.useDispatch)();
+
+  /**
+   * Allow to handle change entry
+   * @param {*} event 
+   */
   var handleChange = function handleChange(event) {
-    updateEntries(Number(event.target.value));
+    dispatch((0, _reducer.setEntries)(Number(event.target.value)));
+    dispatch((0, _reducer.display)());
   };
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "EntriesFilter",
     "data-testid": "EntriesFilter"
-  }, /*#__PURE__*/_react.default.createElement("div", null, "Show"), /*#__PURE__*/_react.default.createElement("select", {
-    onChange: handleChange
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "entries"
+  }, "Show"), /*#__PURE__*/_react.default.createElement("select", {
+    onChange: handleChange,
+    id: "entries"
   }, entriesArr.map(function (optValue, index) {
     return /*#__PURE__*/_react.default.createElement("option", {
       key: index,
@@ -33,7 +43,5 @@ var EntriesFilter = function EntriesFilter(_ref) {
     }, optValue);
   })), /*#__PURE__*/_react.default.createElement("div", null, "entries"));
 };
-EntriesFilter.propTypes = {};
-EntriesFilter.defaultProps = {};
 var _default = EntriesFilter;
 exports.default = _default;

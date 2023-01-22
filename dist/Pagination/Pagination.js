@@ -5,7 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
+var _reactRedux = require("react-redux");
+var _reducer = require("../../redux/reducer");
 require("./Pagination.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /**
@@ -13,14 +14,31 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {*} param0 
  * @returns 
  */
-var Pagination = function Pagination(_ref) {
-  var nbPages = _ref.nbPages,
-    pageIndex = _ref.pageIndex,
-    showingEntries = _ref.showingEntries,
-    totalEntries = _ref.totalEntries,
-    searchValue = _ref.searchValue,
-    setPageIndex = _ref.setPageIndex,
-    dataLength = _ref.dataLength;
+var Pagination = function Pagination() {
+  var dispatch = (0, _reactRedux.useDispatch)();
+  var nbPages = (0, _reactRedux.useSelector)(function (state) {
+    return state.datatable.page.number;
+  });
+  var pageIndex = (0, _reactRedux.useSelector)(function (state) {
+    return state.datatable.page.index;
+  });
+  var showingEntries = (0, _reactRedux.useSelector)(function (state) {
+    return state.datatable.entries.current;
+  });
+  var totalEntries = (0, _reactRedux.useSelector)(function (state) {
+    return state.datatable.entries.total;
+  });
+  var searchValue = (0, _reactRedux.useSelector)(function (state) {
+    return state.datatable.search;
+  });
+  var dataLength = (0, _reactRedux.useSelector)(function (state) {
+    return state.datatable.entries.filtered;
+  });
+
+  /**
+   * 
+   * @returns Allows to convert nbPages into an array of number
+   */
   var pagesArr = function pagesArr() {
     var pages = [];
     for (var i = 1; i <= nbPages; i++) {
@@ -30,20 +48,31 @@ var Pagination = function Pagination(_ref) {
   };
   var next = function next() {
     if (pageIndex + 1 < nbPages) {
-      setPageIndex(pageIndex + 1);
+      changePage(pageIndex + 1);
     }
   };
   var prev = function prev() {
     if (pageIndex > 0) {
-      setPageIndex(pageIndex - 1);
+      changePage(pageIndex - 1);
     }
+  };
+  var changePage = function changePage(index) {
+    dispatch((0, _reducer.setPageIndex)(index));
+    dispatch((0, _reducer.display)());
+  };
+  var getInfos = function getInfos() {
+    var infos = "Showing ";
+    infos += showingEntries > 0 ? pageIndex + 1 : 0; //current page
+    infos += " to " + showingEntries + " of " + dataLength + " entries "; //number of entries
+    infos += searchValue ? " (filtered from " + totalEntries + " total entries)" : ""; //entries filtered
+    return infos;
   };
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "Pagination",
     "data-testid": "Pagination"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "pagination__info"
-  }, "Showing ", showingEntries > 0 ? pageIndex + 1 : 0, " to ", showingEntries, " of ", dataLength, " entries", searchValue ? ' (filtered from ' + totalEntries + ' total entries)' : ''), /*#__PURE__*/_react.default.createElement("div", {
+  }, getInfos()), /*#__PURE__*/_react.default.createElement("div", {
     className: "pagination__tab"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: pageIndex > 0 ? 'prev page-index' : 'prev',
@@ -53,7 +82,7 @@ var Pagination = function Pagination(_ref) {
       className: pageIndex + 1 === page ? 'page-index current-page' : 'page-index',
       key: page,
       onClick: function onClick() {
-        return setPageIndex(page - 1);
+        return changePage(page - 1);
       }
     }, page);
   }), /*#__PURE__*/_react.default.createElement("div", {
@@ -61,7 +90,5 @@ var Pagination = function Pagination(_ref) {
     onClick: next
   }, "Next")));
 };
-Pagination.propTypes = {};
-Pagination.defaultProps = {};
 var _default = Pagination;
 exports.default = _default;

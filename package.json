@@ -1,8 +1,8 @@
 {
-  "name": "datatable-hrnet",
+  "name": "hrnet-datatable",
   "version": "0.0.1",
   "private": false,
-  "dependencies": {
+  "peerDependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@storybook/addon-storyshots": "^6.5.15",
     "@testing-library/jest-dom": "^5.16.5",
