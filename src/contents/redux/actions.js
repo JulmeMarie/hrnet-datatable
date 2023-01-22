@@ -16,10 +16,12 @@ const actions = {
     },
     setSearch: (state, action) => {
         state.search = action.payload;
+        state.page.index = 0;//init page index
         return state;
     },
     setEntries: (state, action) => {
         state.entries.selected = action.payload;
+        state.page.index = 0;//init page index
         return state;
     },
     setSort: (state, action) => {
@@ -32,7 +34,6 @@ const actions = {
 
             //Step 2 : if search exists, perform search
             if (state.search != null && state.search.length > 0) {
-                state.page.index = 0;//init page index
                 let dataList = results.data.filter((element) => {
                     let filteredList = results.columns.filter((column) => {
                         //return true if searchValue input includes in the column of the element

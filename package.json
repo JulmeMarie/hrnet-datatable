@@ -1,20 +1,22 @@
 {
   "name": "hrnet-datatable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
-  "peerDependencies": {
+  "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
+    "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5"
+  },
+  "peerDependencies": {
     "@storybook/addon-storyshots": "^6.5.15",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-icons": "^4.7.1",
-    "react-redux": "^8.0.5",
-    "react-scripts": "5.0.1",
     "react-test-renderer": "^17.0.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,7 +26,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "clean": "rimraf dist",
-    "compile": "npm run clean && cross-env NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__"
+    "compile": "npm run clean && cross-env NODE_ENV=production babel src/contents --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__,data.js"
   },
   "eslintConfig": {
     "extends": [
