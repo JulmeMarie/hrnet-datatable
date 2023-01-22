@@ -13,6 +13,10 @@ const SearchFilter = () => {
 
   const dispatch = useDispatch();
 
+  /**
+   * Allows to handle search on value change
+   * @param {*} event 
+   */
   const handleChange = (event) => {
     dispatch(setSearch(event.target.value));
     dispatch(display());
@@ -20,7 +24,7 @@ const SearchFilter = () => {
 
   return (
     <div className="SearchFilter" data-testid="SearchFilter">
-      <label for="search">Search: </label>
+      <label htmlFor="search">Search: </label>
       <input type="text" onChange={handleChange} id="search" />
     </div>
   );

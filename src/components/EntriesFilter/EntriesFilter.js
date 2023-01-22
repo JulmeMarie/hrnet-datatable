@@ -15,6 +15,10 @@ const entriesArr = [10, 25, 50, 100];
 const EntriesFilter = () => {
   const dispatch = useDispatch();
 
+  /**
+   * Allow to handle change entry
+   * @param {*} event 
+   */
   const handleChange = (event) => {
     dispatch(setEntries(Number(event.target.value)));
     dispatch(display());
@@ -22,7 +26,7 @@ const EntriesFilter = () => {
 
   return (
     <div className="EntriesFilter" data-testid="EntriesFilter">
-      <label for="entries">Show</label>
+      <label htmlFor="entries">Show</label>
       <select onChange={handleChange} id="entries">
         {
           entriesArr.map((optValue, index) => {
@@ -34,4 +38,5 @@ const EntriesFilter = () => {
     </div>
   );
 }
+
 export default EntriesFilter;

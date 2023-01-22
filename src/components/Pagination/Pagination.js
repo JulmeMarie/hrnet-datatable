@@ -18,6 +18,10 @@ const Pagination = () => {
   const searchValue = useSelector(state => state.datatable.search);
   const dataLength = useSelector(state => state.datatable.entries.filtered);
 
+  /**
+   * 
+   * @returns Allows to convert nbPages into an array of number
+   */
   const pagesArr = () => {
     let pages = [];
     for (var i = 1; i <= nbPages; i++) {
