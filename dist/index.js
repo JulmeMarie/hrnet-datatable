@@ -9,5 +9,5 @@ Object.defineProperty(exports, "DataTable", {
     return _DataTable.default;
   }
 });
-var _DataTable = _interopRequireDefault(require("./DataTable/DataTable"));
+var _DataTable = _interopRequireDefault(require("./components/DataTable/DataTable"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

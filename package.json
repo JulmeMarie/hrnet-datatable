@@ -1,13 +1,10 @@
 {
   "name": "hrnet-datatable",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
-    "react-icons": "^4.7.1",
-    "react-redux": "^8.0.5"
-  },
-  "peerDependencies": {
+    "react-redux": "^8.0.5",
     "@storybook/addon-storyshots": "^6.5.15",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

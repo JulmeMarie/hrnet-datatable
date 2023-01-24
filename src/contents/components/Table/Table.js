@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setSort, display } from '../../redux/reducer';
-import { FaCaretUp } from "react-icons/fa";
-import { FaCaretDown } from "react-icons/fa";
 import './Table.css';
 
 /**
@@ -27,27 +25,39 @@ const Table = () => {
     }
   }, [displayData]);
 
+  /**
+   * This method allows us to calculate the width of each column
+   */
   const computeColumnWidth = () => {
     let columnWidth = 100 / displayData.columns.length;
     setColumn_width({ width: columnWidth + "%" });
   }
 
+  /**
+   * This method allows to compute arrows up/down
+   * @param {*} column 
+   * @returns 
+   */
   const getIcons = (column) => {
     if (column === sort.column) {
-      return sort.order === "ASC" ? <FaCaretUp className='up sort' /> : <FaCaretDown className='down sort' />
+      return sort.order === "ASC" ? <div className='arrow-up sort' /> : <div className='arrow-down sort' />
     }
-    return <><FaCaretUp className='up' /><FaCaretDown className='down' /></>
+    return <><div className='arrow-up' /><div className='arrow-down' /></>
   }
 
+  /**
+   * This method allows to handle click when user want to sort
+   * @param {*} column 
+   */
   const handleSort = (column) => {
     let newSort = { ...sort };
 
-    if (column === sort.column) {
+    if (column === sort.column) {//check if column is the same as current sorted column
       newSort.order = sort.order === "ASC" ? "DESC" : "ASC";
     }
     else {
       newSort.column = column;
-      newSort.order = "ASC";
+      newSort.order = "ASC"; //Par default
     }
     dispatch(setSort(newSort));
     dispatch(display());
