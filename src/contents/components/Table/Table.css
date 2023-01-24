@@ -45,26 +45,26 @@ tbody tr:hover {
     width: 0;
     height: 0;
     position: absolute;
-    top: 0.1rem;
+    top: 0rem;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-bottom: 6px solid #ddd;
+    border-bottom: 8px solid #ddd;
 }
 
 .arrow-down {
     width: 0;
     height: 0;
     position: absolute;
-    bottom: 0.1rem;
+    bottom: 0rem;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid #ddd;
+    border-top: 8px solid #ddd;
 }
 
 .arrow-up.sort {
-    border-bottom: 5px solid cadetblue;
+    border-bottom: 8px solid cadetblue;
 }
 
 .arrow-down.sort {
-    border-top: 5px solid cadetblue;
+    border-top: 8px solid cadetblue;
 }

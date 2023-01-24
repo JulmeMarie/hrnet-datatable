@@ -38,23 +38,33 @@ tbody tr:hover {
 }
 
 .Table .th-icons {
-    font-size: 1rem;
-    height: 1.2rem;
-    width: 1rem;
     position: relative;
-    color: #ddd;
 }
 
-.Table .th-icons>.up {
+.arrow-up {
+    width: 0;
+    height: 0;
     position: absolute;
-    top: -0.2rem;
+    top: 0rem;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid #ddd;
 }
 
-.Table .th-icons>.down {
+.arrow-down {
+    width: 0;
+    height: 0;
     position: absolute;
-    bottom: -0.2rem;
+    bottom: 0rem;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #ddd;
 }
 
-.Table .th-icons svg.sort {
-    fill: cadetblue;
+.arrow-up.sort {
+    border-bottom: 8px solid cadetblue;
+}
+
+.arrow-down.sort {
+    border-top: 8px solid cadetblue;
 }

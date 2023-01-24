@@ -8,7 +8,6 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _reactRedux = require("react-redux");
 var _reducer = require("../../redux/reducer");
-var _fa = require("react-icons/fa");
 require("./Table.css");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -57,34 +56,51 @@ var Table = function Table() {
       computeColumnWidth();
     }
   }, [displayData]);
+
+  /**
+   * This method allows us to calculate the width of each column
+   */
   var computeColumnWidth = function computeColumnWidth() {
     var columnWidth = 100 / displayData.columns.length;
     setColumn_width({
       width: columnWidth + "%"
     });
   };
+
+  /**
+   * This method allows to compute arrows up/down
+   * @param {*} column 
+   * @returns 
+   */
   var getIcons = function getIcons(column) {
     if (column === sort.column) {
-      return sort.order === "ASC" ? /*#__PURE__*/_react.default.createElement(_fa.FaCaretUp, {
-        className: "up sort"
-      }) : /*#__PURE__*/_react.default.createElement(_fa.FaCaretDown, {
-        className: "down sort"
+      return sort.order === "ASC" ? /*#__PURE__*/_react.default.createElement("div", {
+        className: "arrow-up sort"
+      }) : /*#__PURE__*/_react.default.createElement("div", {
+        className: "arrow-down sort"
       });
     }
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_fa.FaCaretUp, {
-      className: "up"
-    }), /*#__PURE__*/_react.default.createElement(_fa.FaCaretDown, {
-      className: "down"
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "arrow-up"
+    }), /*#__PURE__*/_react.default.createElement("div", {
+      className: "arrow-down"
     }));
   };
+
+  /**
+   * This method allows to handle click when user want to sort
+   * @param {*} column 
+   */
   var handleSort = function handleSort(column) {
     var newSort = _objectSpread({}, sort);
     if (column === sort.column) {
+      //check if column is the same as current sorted column
       newSort.order = sort.order === "ASC" ? "DESC" : "ASC";
     } else {
       newSort.column = column;
-      newSort.order = "ASC";
+      newSort.order = "ASC"; //Par default
     }
+
     dispatch((0, _reducer.setSort)(newSort));
     dispatch((0, _reducer.display)());
   };
