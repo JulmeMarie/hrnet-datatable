@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setSort = exports.setSearch = exports.setPageIndex = exports.setIncomingData = exports.setEntries = exports.setDisplayData = exports.display = exports.default = void 0;
+exports.setSort = exports.setSearch = exports.setPageIndex = exports.setIncomingData = exports.setEntries = exports.setDisplayData = exports.default = exports.compute = void 0;
 var _toolkit = require("@reduxjs/toolkit");
 var _actions = _interopRequireDefault(require("./actions"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -46,7 +46,7 @@ var tableSlice = (0, _toolkit.createSlice)({
 var _tableSlice$actions = tableSlice.actions,
   setIncomingData = _tableSlice$actions.setIncomingData,
   setDisplayData = _tableSlice$actions.setDisplayData,
-  display = _tableSlice$actions.display,
+  compute = _tableSlice$actions.compute,
   setEntries = _tableSlice$actions.setEntries,
   setPageIndex = _tableSlice$actions.setPageIndex,
   setSearch = _tableSlice$actions.setSearch,
@@ -55,7 +55,7 @@ exports.setSort = setSort;
 exports.setSearch = setSearch;
 exports.setPageIndex = setPageIndex;
 exports.setEntries = setEntries;
-exports.display = display;
+exports.compute = compute;
 exports.setDisplayData = setDisplayData;
 exports.setIncomingData = setIncomingData;
 var _default = tableSlice.reducer;

@@ -37,7 +37,7 @@ var DataTable = function DataTable(_ref2) {
   var dispatch = (0, _reactRedux.useDispatch)();
   (0, _react.useEffect)(function () {
     dispatch((0, _reducer.setIncomingData)(inputData));
-    dispatch((0, _reducer.display)());
+    dispatch((0, _reducer.compute)());
   }, [inputData]);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "DataTable",

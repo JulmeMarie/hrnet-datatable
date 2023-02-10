@@ -58,7 +58,7 @@ var Pagination = function Pagination() {
   };
   var changePage = function changePage(index) {
     dispatch((0, _reducer.setPageIndex)(index));
-    dispatch((0, _reducer.display)());
+    dispatch((0, _reducer.compute)());
   };
   var getInfos = function getInfos() {
     var infos = "Showing ";

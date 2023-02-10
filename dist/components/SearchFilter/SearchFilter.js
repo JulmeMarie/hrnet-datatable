@@ -16,6 +16,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 var SearchFilter = function SearchFilter() {
   var dispatch = (0, _reactRedux.useDispatch)();
+  var value = (0, _reactRedux.useSelector)(function (state) {
+    return state.datatable.search;
+  });
 
   /**
    * Allows to handle search on value change
@@ -23,7 +26,7 @@ var SearchFilter = function SearchFilter() {
    */
   var handleChange = function handleChange(event) {
     dispatch((0, _reducer.setSearch)(event.target.value));
-    dispatch((0, _reducer.display)());
+    dispatch((0, _reducer.compute)());
   };
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "SearchFilter",
@@ -33,7 +36,8 @@ var SearchFilter = function SearchFilter() {
   }, "Search: "), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     onChange: handleChange,
-    id: "search"
+    id: "search",
+    value: value
   }));
 };
 var _default = SearchFilter;

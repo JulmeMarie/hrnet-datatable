@@ -26,7 +26,7 @@ var EntriesFilter = function EntriesFilter() {
    */
   var handleChange = function handleChange(event) {
     dispatch((0, _reducer.setEntries)(Number(event.target.value)));
-    dispatch((0, _reducer.display)());
+    dispatch((0, _reducer.compute)());
   };
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "EntriesFilter",
