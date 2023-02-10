@@ -1,6 +1,6 @@
 {
-  "name": "datatable-hrnet",
-  "version": "0.0.2",
+  "name": "hrnet-datatable",
+  "version": "0.0.1",
   "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
