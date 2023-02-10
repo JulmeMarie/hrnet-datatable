@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { setPageIndex, display } from '../../redux/reducer';
+import { setPageIndex, compute } from '../../redux/reducer';
 
 import './Pagination.css';
 /**
@@ -44,7 +44,7 @@ const Pagination = () => {
 
   const changePage = (index) => {
     dispatch(setPageIndex(index));
-    dispatch(display());
+    dispatch(compute());
   };
 
   const getInfos = () => {

@@ -28,6 +28,6 @@ const tableSlice = createSlice({
     reducers: actions
 });
 
-export const { setIncomingData, setDisplayData, display, setEntries, setPageIndex, setSearch, setSort } = tableSlice.actions;
+export const { setIncomingData, setDisplayData, compute, setEntries, setPageIndex, setSearch, setSort } = tableSlice.actions;
 
 export default tableSlice.reducer;

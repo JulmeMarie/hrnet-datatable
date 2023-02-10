@@ -28,11 +28,20 @@ const actions = {
         state.sort = action.payload;
         return state;
     },
-    display: (state) => {
+    /**
+     * This method computes the data in 4 steps: 
+     * 1) compute for search filter
+     * 2) compute page numbers
+     * 3) compute : sort the data
+     * 4) Compute data to display in current page
+     * @param {*} state 
+     * @returns 
+     */
+    compute: (state) => {
         if (state.data.incoming) {
             let results = { ...state.data.incoming };// clone The user data
 
-            //Step 2 : if search exists, perform search
+            //Step 1 : if search exists, perform search
             if (state.search != null && state.search.length > 0) {
                 let dataList = results.data.filter((element) => {
                     let filteredList = results.columns.filter((column) => {
@@ -44,7 +53,7 @@ const actions = {
                 results.data = dataList;
             };
 
-            // Step 3 : perform page numbers
+            // Step 2 : perform page numbers
             let division = results.data.length / state.entries.selected;
             state.page.number = Math.ceil(division);
             state.entries.filtered = results.data.length;

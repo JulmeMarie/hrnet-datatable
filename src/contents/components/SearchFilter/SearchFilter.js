@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch } from "react-redux";
-import { setSearch, display } from '../../redux/reducer';
+import { useDispatch, useSelector } from "react-redux";
+import { setSearch, compute } from '../../redux/reducer';
 
 import './SearchFilter.css';
 
@@ -10,8 +10,8 @@ import './SearchFilter.css';
  * @returns 
  */
 const SearchFilter = () => {
-
   const dispatch = useDispatch();
+  const value = useSelector(state => state.datatable.search);
 
   /**
    * Allows to handle search on value change
@@ -19,13 +19,13 @@ const SearchFilter = () => {
    */
   const handleChange = (event) => {
     dispatch(setSearch(event.target.value));
-    dispatch(display());
+    dispatch(compute());
   }
 
   return (
     <div className="SearchFilter" data-testid="SearchFilter">
       <label htmlFor="search">Search: </label>
-      <input type="text" onChange={handleChange} id="search" />
+      <input type="text" onChange={handleChange} id="search" value={value} />
     </div>
   );
 }

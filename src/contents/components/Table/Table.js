@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { setSort, display } from '../../redux/reducer';
+import { setSort, compute } from '../../redux/reducer';
 import './Table.css';
 
 /**
@@ -60,7 +60,7 @@ const Table = () => {
       newSort.order = "ASC"; //Par default
     }
     dispatch(setSort(newSort));
-    dispatch(display());
+    dispatch(compute());
   }
 
   return (

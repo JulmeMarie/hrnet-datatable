@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
 import { setEntries } from '../../redux/reducer';
-import { display } from '../../redux/reducer';
+import { compute } from '../../redux/reducer';
 import './EntriesFilter.css';
 
 //An array of entries by default
@@ -21,7 +21,7 @@ const EntriesFilter = () => {
    */
   const handleChange = (event) => {
     dispatch(setEntries(Number(event.target.value)));
-    dispatch(display());
+    dispatch(compute());
   }
 
   return (

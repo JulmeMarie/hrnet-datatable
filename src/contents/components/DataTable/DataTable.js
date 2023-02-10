@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Provider } from "react-redux";
 import { store } from '../../redux/store';
 import { setIncomingData } from '../../redux/reducer';
-import { display } from '../../redux/reducer';
+import { compute } from '../../redux/reducer';
 import { useDispatch } from "react-redux";
 
 import './DataTable.css';
@@ -29,7 +29,7 @@ const DataTable = ({ inputData }) => {
 
   useEffect(() => {
     dispatch(setIncomingData(inputData));
-    dispatch(display());
+    dispatch(compute());
   }, [inputData]);
 
   return (
